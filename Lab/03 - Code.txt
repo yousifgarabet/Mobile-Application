@@ -1,0 +1,474 @@
+Layouts with Single Content
+1- ContentView
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FormsGallery.XamlExamples.ContentViewDemoPage"
+             Title="ContentView Demo">
+    <StackLayout>
+        <Label Text="ContentView"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <ContentView BackgroundColor="Aqua"
+                     Margin="10"
+                     Padding="25"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="CenterAndExpand">
+            <Label Text=
+"The ContentView (colored aqua in this
+example) might not seem very useful
+because it can have a single child
+(in this example a Label) and doesn't
+do much else. But ContentView is sometimes a
+convenient way of providing a background
+color or giving a little margin to its
+child through its own Padding property."
+                   TextColor="Purple" />
+        </ContentView>
+    </StackLayout>
+</ContentPage>
+
+2- Frame
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FormsGallery.XamlExamples.FrameDemoPage"
+             Title="Frame Demo">
+    <StackLayout>
+        <Label Text="Frame"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <Frame OutlineColor="Accent"
+               HasShadow="True"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand">
+            <Label Text="I've been framed!" />
+        </Frame>
+    </StackLayout>
+</ContentPage>
+ 
+3- ScrollView
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FormsGallery.XamlExamples.ScrollViewDemoPage"
+             Title="ScrollView Demo">
+    <StackLayout>
+        <Label Text="ScrollView"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <ScrollView VerticalOptions="FillAndExpand"
+                    Margin="10">
+
+        <Label Text=
+"Sometimes page content fits entirely on
+the page. That's very convenient. But
+on many occasions, the content of the page
+is much too large for the page, or only
+becomes available at runtime.
+&#10;&#10;For cases such as these, the ScrollView
+provides a solution. Simply set its
+Content property to your content &#x2014; in this
+case a Label but in the general case very
+likely a Layout derivative with multiple
+children &#x2014; and the ScrollView provides
+scrolling with the distinctive look and touch
+familiar to the user.
+&#10;&#10;The ScrollView is also capable of
+horizontal scrolling, and while that's
+usually not as common as vertical scrolling,
+sometimes it comes in handy.
+&#10;&#10;Most often, the content of a ScrollView is
+a StackLayout. Whenever you're using a
+StackLayout with a number of items determined
+only at runtime, you should probably put it in
+a ScrollView just to be sure your stuff doesn't
+go running off the bottom of the screen."
+
+                FontSize="Large" />
+        </ScrollView>
+    </StackLayout>
+</ContentPage>
+
+Layouts with Multiple Children
+
+1- StackLayout 
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FormsGallery.XamlExamples.StackLayoutDemoPage"
+             Title="StackLayout">
+    <StackLayout>
+        <Label Text="StackLayout"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <StackLayout Spacing="0"
+                     VerticalOptions="FillAndExpand"
+                     Margin="10">
+            <Label Text="StackLayout"
+                   HorizontalOptions="Start" />
+
+            <Label Text="stacks its children"
+                   HorizontalOptions="Center" />
+
+            <Label Text="vertically"
+                   HorizontalOptions="End" />
+
+            <Label Text="by default,"
+                   HorizontalOptions="Center" />
+
+            <Label Text="but horizontal placement"
+                   HorizontalOptions="Start" />
+
+            <Label Text="can be controlled with"
+                   HorizontalOptions="Center" />
+
+            <Label Text="the HorizontalOptions property."
+                   HorizontalOptions="End" />
+
+            <Label Text=
+"An Expand option allows one or more children
+to occupy the an area within the remaining
+space of the StackLayout after it's been sized
+to the height of its parent."
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="End" />
+
+            <StackLayout Spacing="0"
+                         Orientation="Horizontal">
+
+                <Label Text="Stacking" />
+                <Label Text="can also be"
+                       HorizontalOptions="CenterAndExpand" />
+                <Label Text="horizontal." />
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
+
+2- Grid
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FormsGallery.XamlExamples.GridDemoPage"
+             Title="Grid Demo">
+
+    <Grid VerticalOptions="FillAndExpand"
+          Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+
+        <Label Text="Grid"
+               Grid.Column="0"
+               Grid.ColumnSpan="3"
+               Grid.Row="0"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <Label Text="Autosized cell"
+               Grid.Column="0"
+               Grid.Row="1"
+               TextColor="White"
+               BackgroundColor="Blue" />
+
+        <BoxView Color="Silver"
+                 Grid.Column="1"
+                 Grid.Row="1"
+                 HeightRequest="0" />
+
+        <BoxView Color="Teal"
+                 Grid.Column="0"
+                 Grid.Row="2" />
+
+        <Label Text="Leftover space"
+               Grid.Column="1"
+               Grid.Row="2"
+               TextColor="Purple"
+               BackgroundColor="Aqua"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+
+        <Label Text="Span two rows (or more if you want)"
+               Grid.Column="2"
+               Grid.Row="1"
+               Grid.RowSpan="2"
+               TextColor="Yellow"
+               BackgroundColor="Navy"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+
+        <Label Text="Span 2 columns"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Grid.Row="3"
+               TextColor="Blue"
+               BackgroundColor="Yellow"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+
+        <Label Text="Fixed 100x100"
+               Grid.Column="2"
+               Grid.Row="3"
+               TextColor="Aqua"
+               BackgroundColor="Red"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center" />
+    </Grid>
+</ContentPage>
+
+3- AbsoluteLayout
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FormsGallery.XamlExamples.AbsoluteLayoutDemoPage"
+             Title="AbsoluteLayout Demo">
+    <StackLayout>
+        <Label Text="AbsoluteLayout"
+               FontSize="40"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <AbsoluteLayout BackgroundColor="#CCCCFF"
+                        VerticalOptions="FillAndExpand">
+            
+            <!-- Create two Labels for animating. -->
+            <Label x:Name="text1" 
+                   Text="AbsoluteLayout"
+                   TextColor="Black"
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+            
+            <Label x:Name="text2" 
+                   Text="AbsoluteLayout"
+                   TextColor="Black"
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+        </AbsoluteLayout>
+    </StackLayout>
+</ContentPage>
+
+4- RelativeLayout
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FormsGallery.XamlExamples.RelativeLayoutDemoPage"
+             Title="RelativeLayout Demo"
+             x:Name="this">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <!-- With a FontSize of 25, Label height is about 34. -->
+                <Setter Property="FontSize" Value="25" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Text="RelativeLayout"
+               Grid.Row="0"
+               FontSize="40"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center" />
+
+        <RelativeLayout Grid.Row="1" 
+                        Margin="10">
+            
+            <!-- Many Constant settings are estimates based on the FontSize of the Label
+                    governed by the Style at the top of this page. -->
+
+            <!-- A Label centered vertically. -->
+            <Label x:Name="centerLabel" 
+                   Text="Center"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, 
+                                                                     Constant=0}"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, 
+                                                                     Property=Height, 
+                                                                     Factor=0.5,
+                                                                     Constant=-17}" />
+            <!-- A Label above the centered Label. -->
+            <Label x:Name="aboveLabel"
+                   Text="Above"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                     ElementName=centerLabel,
+                                                                     Property=Width}"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                     ElementName=centerLabel,
+                                                                     Property=Y,
+                                                                     Constant=-34}" />
+            <!-- A Label below the centered Label. -->
+            <Label x:Name="belowLabel"
+                   Text="Below"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                     ElementName=centerLabel,
+                                                                     Property=Width}"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                     ElementName=centerLabel,
+                                                                     Property=Y,
+                                                                     Constant=34}" />
+            <!-- Finish with another on top... -->
+            <Label Text="Further Above"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                     ElementName=aboveLabel,
+                                                                     Property=X,
+                                                                     Constant=70}"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                     ElementName=aboveLabel,
+                                                                     Property=Y,
+                                                                     Constant=-34}" />
+            <!-- ...and another on the bottom. -->
+            <Label Text="Further Below"
+                   RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                     ElementName=belowLabel,
+                                                                     Property=X,
+                                                                     Constant=70}"
+                   RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                     ElementName=belowLabel,
+                                                                     Property=Y,
+                                                                     Constant=34}" />
+            <!-- Four BoxView's -->
+            <BoxView Color="Red"
+                     RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, 
+                                                                       Constant=0}" 
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, 
+                                                                       Constant=0}" />
+            <BoxView Color="Green"
+                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, 
+                                                                       Property=Width, 
+                                                                       Constant=-40}"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, 
+                                                                       Constant=0}" />
+            <BoxView Color="Blue"
+                     RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, 
+                                                                       Constant=0}"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, 
+                                                                       Property=Height, 
+                                                                       Constant=-40}" />
+            <BoxView Color="Yellow"
+                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, 
+                                                                       Property=Width, 
+                                                                       Constant=-40}"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, 
+                                                                       Property=Height, 
+                                                                       Constant=-40}" />
+        </RelativeLayout>
+    </Grid>
+</ContentPage>
+
+5- FlexLayout
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:FormsGallery"
+             x:Class="FormsGallery.XamlExamples.FlexLayoutDemoPage"
+             Title="FlexLayout Demo">
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="LightYellow" />
+            <Setter Property="BorderColor" Value="Blue" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="CornerRadius" Value="15" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="0, 4" />
+        </Style>
+
+        <Style x:Key="headerLabel" TargetType="Label">
+            <Setter Property="Margin" Value="0, 8" />
+            <Setter Property="FontSize" Value="Large" />
+            <Setter Property="TextColor" Value="Blue" />
+        </Style>
+
+        <Style TargetType="Image">
+            <Setter Property="FlexLayout.Order" Value="-1" />
+            <Setter Property="FlexLayout.AlignSelf" Value="Center" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Text" Value="LEARN MORE" />
+            <Setter Property="FontSize" Value="Large" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="Green" />
+            <Setter Property="CornerRadius" Value="20" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView Orientation="Both">
+        <FlexLayout>
+            <Frame WidthRequest="300"
+                   HeightRequest="480">
+
+                <FlexLayout Direction="Column">
+                    <Label Text="Seated Monkey"
+                           Style="{StaticResource headerLabel}" />
+                    <Label Text="This monkey is laid back and relaxed, and likes to watch the world go by." />
+                    <Label Text="  &#x2022; Doesn't make a lot of noise" />
+                    <Label Text="  &#x2022; Often smiles mysteriously" />
+                    <Label Text="  &#x2022; Sleeps sitting up" />
+                    <Image Source="{local:ImageResource FormsGallery.Images.SeatedMonkey.jpg}"
+                           WidthRequest="180"
+                           HeightRequest="180" />
+                    <Label FlexLayout.Grow="1" />
+                    <Button />
+                </FlexLayout>
+            </Frame>
+
+            <Frame WidthRequest="300"
+                   HeightRequest="480">
+
+                <FlexLayout Direction="Column">
+                    <Label Text="Banana Monkey"
+                           Style="{StaticResource headerLabel}" />
+                    <Label Text="Watch this monkey eat a giant banana." />
+                    <Label Text="  &#x2022; More fun than a barrel of monkeys" />
+                    <Label Text="  &#x2022; Banana not included" />
+                    <Image Source="{local:ImageResource FormsGallery.Images.Banana.jpg}"
+                           WidthRequest="240"
+                           HeightRequest="180" />
+                    <Label FlexLayout.Grow="1" />
+                    <Button />
+                </FlexLayout>
+            </Frame>
+
+            <Frame WidthRequest="300"
+                   HeightRequest="480">
+
+                <FlexLayout Direction="Column">
+                    <Label Text="Face-Palm Monkey"
+                           Style="{StaticResource headerLabel}" />
+                    <Label Text="This monkey reacts appropriately to ridiculous assertions and actions." />
+                    <Label Text="  &#x2022; Cynical but not unfriendly" />
+                    <Label Text="  &#x2022; Seven varieties of grimaces" />
+                    <Label Text="  &#x2022; Doesn't laugh at your jokes" />
+                    <Image Source="{local:ImageResource FormsGallery.Images.FacePalm.jpg}"
+                           WidthRequest="180"
+                           HeightRequest="180" />
+                    <Label FlexLayout.Grow="1" />
+                    <Button />
+                </FlexLayout>
+            </Frame>
+        </FlexLayout>
+    </ScrollView>
+</ContentPage>
